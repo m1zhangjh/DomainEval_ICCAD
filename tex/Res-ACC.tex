@@ -1,0 +1,58 @@
+\vspace{-2pt}
+\subsection{\newtext{ACC Detail of MAAR DSE}}
+\label{subsec:res-acc}
+
+\vspace{-2pt}
+
+\begin{table}[h]
+	\caption{MAAR Kernel Allocation}
+	\label{tab:maar}
+	\vspace{-8pt}
+	\centering
+	\begin{tabular}{|P{0.15\linewidth} | P{0.5\linewidth} | P{0.15\linewidth}|}
+		\toprule
+		\#ACCs & ACC Kernel Added & \#Used \\
+		\midrule
+		\hline
+		1 & Custom Convolution & 37 \\
+		\hline
+		2 & Canny Edge Detector & 9 \\
+		\hline
+		3 & Harris Corners & 7 \\
+		\hline
+        4 & Optical Flow Pyramid (LK) & 4 \\
+        \hline
+        5 & Box Filter & 7 \\
+        \hline
+        6 & Gaussian Filter & 9\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\vspace{-2pt}
+
+
+
+\tabref{tab:maar} shows MAAR DSE benefits when designing one platform for the OpenVX market with 1 to 6 ACCs. 
+%gives insight on which OpenVX kernels MAAR chooses for a platform with 1 to 6 ACCs, as well as how often each ACC is used. 
+All kernels are compute intense yielding a high efficiency improvement if accelerated. \textit{Custom Convolution} is most frequently used (39 times) as it is the basis of many vision kernels. For a platform with 2 ACCs, MAAR adds \textit{Canny Edge} (9 times used). Overall, kernels appearing more frequently are not necessarily selected by MAAR DSE. Sometimes, less frequent but compute-intensive functions, e.g. \textit{Optical Flow Pyramid (LK)} added as a 4th ACC, have a higher priority.
+However, this also indicates some limits of the input data flow graphs which were derived from the application's OpenVX calls. This kernel could be decomposed in many smaller kernels, which then subsequently could be reused more. 
+%
+Considering the specialization of kernels, e.g. \textit{Gaussian Filter} is a specialization of \textit{Convolution} which takes advantage of weight symmetries, is part of the future work.
+
+
+
+
+% the order of kernel in OpenVX allocation. CustomConvolution CannyEdgeDetector HarrisCorners OpticalFlowPyramid(LK)  BoxFilter GaussianFilter
+
+
+%MAAR DSE design run-time is very moderate thanks to the fast heuristic GA traversal and a fast evaluation. Exploring a common platform with ACCs=19 for the 40 OpenVX applications on a 3.10GHz Intel i5-3450 only takes 147.56s.
+
+%The number of unique kernels considered and the ACCs budget impact exploration time the most. Overall, the design space contains: $\frac{\#Kernel!}{\#ACC! (\#Kernel - \#ACC)!}$ (assuming any to any connection between ACCs) configurations. 
+%The exploration duration is correlated to design space size. With a larger size, more GA iterations are needed on average to find high-performing configurations.
+%Some concrete examples: Increasing the ACC budget from 1 to 19 increases the OpenVX exploration time from 1.5s to 147seconds. Assuming a constant 19 ACC budget, but a varying application set (synthetically generated) changing from 30 to 100 unique kernels increases DSE time from 92s to 1351s.
+
+%In addition, exploration time increases linearly with number of applications as each one must be evaluated individually. Application size by itself does not impact exploration time. Conversely, the number of unique kernels and kernel connection per application linearly impact the time for analytic evaluation, thus influence exploration time.
+
+
+

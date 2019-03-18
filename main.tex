@@ -1,0 +1,225 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
+
+\usepackage[english]{babel}
+
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+
+% Many App Acc-rich DSE
+%% MAAR 
+
+% separate approach than, e.g.  deep learning with highly regular homogeneous computation and memory access patterns 
+% set of heterogeneous functions APIs
+% more for SoftwareDEfined X Software Defined Radio, Radar, LIDAR, Algorithmic Vision.
+
+\pagestyle{plain} % removes running headers
+
+\makeatletter
+\renewcommand\@formatdoi[1]{\ignorespaces}
+\makeatother
+
+\usepackage{times}
+%\usepackage{microtype}
+%\usepackage[UKenglish]{babel}
+%\usepackage{graphicx,dblfloatfix}
+%\usepackage{blindtext}
+\usepackage{mathtools}
+\usepackage{multirow}
+%\usepackage[table]{xcolor}
+%\usepackage{subcaption}
+%\usepackage{hhline}
+%\usepackage{arydshln}
+\usepackage{graphicx,dblfloatfix}
+\usepackage{caption}
+%\captionsetup{skip=5pt}
+%\usepackage{amssymb,amsmath} 
+%\usepackage{algpseudocode}
+\usepackage{multirow}
+\usepackage{tabularx}
+%\usepackage{booktabs}
+\usepackage{url}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+\usepackage{float}
+\restylefloat{float}
+%\usepackage{amsmath}
+%\usepackage[nosumlimits]{amsmath}
+\usepackage{algorithm}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{amssymb}
+\usepackage{algpseudocode}
+%\usepackage{cite}
+%\usepackage[numbers]{natbib}
+%\usepackage{notoccite}
+%\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsthm}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{subfig}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{varwidth}
+\usepackage{graphicx}
+\usepackage{sidecap}
+\usepackage{wrapfig}
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+
+\mathchardef\mhyphen="2D % Define a "math hyphen"
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\definecolor{lightgray}{gray}{0.9}
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+\newcommand{\appref}[1]{Appendix~\ref{#1}}
+\newcommand{\algoref}[1]{Algorithm~\ref{#1}}
+\algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
+\algnewcommand{\IIf}[1]{\State\algorithmicif\ #1\ \algorithmicthen}
+\algnewcommand{\EndIIf}{\unskip\ \algorithmicend\ \algorithmicif}
+\algnewcommand{\IfThenElse}[3]{% \IfThenElse{<if>}{<then>}{<else>}
+  \State \algorithmicif\ #1\ \algorithmicthen\ #2\ \algorithmicelse\ #3}
+%\let\oldReturn\Return
+%\renewcommand{\Return}{\State\oldReturn}
+
+\algtext*{EndWhile}% Remove "end while" text
+\algtext*{EndIf}% Remove "end if" text
+\algtext*{EndFor}% Remove "end if" text
+\algtext*{EndFunction}% Remove "end if" text
+
+\usepackage[author={Gunar Schirner}]{pdfcomment}
+\newcommand{\todo}[2]{\pdfmarkupcomment[icon=Comment,color=yellow]{#1}{TODO: #2}}
+\newcommand{\done}[2]{\pdfmarkupcomment[color=lime]{#1}{}}
+
+%GS change text color instead of using highlight
+% issue with highlight is that it does not work across dynamic elements 
+% such as section numbers or macros
+\definecolor{redNew}{rgb}{0.99,0.0,0.00}
+\newcommand{\newtext}[1]{{\color{redNew}#1}}
+
+
+\definecolor{red2}{rgb}{0.99,0.80,0.80}
+\definecolor{lightgray}{rgb}{0.9,0.9,0.8}
+\definecolor{lightgray2}{rgb}{1,1,0.6}
+\definecolor{pepper2}{rgb}{0.85,0.75,0.85}
+\definecolor{blue2}{rgb}{0.9,1,1}
+
+
+\setlength{\textfloatsep}{8.0pt plus 2.0pt minus 1.0pt}
+\setlength{\floatsep}{4pt plus 1.0pt minus 1.0pt}
+\setlength{\intextsep}{4pt plus 1.0pt minus 1.0pt}
+
+\usepackage{xspace}
+
+\begin{document}
+
+%\title{Fair Domain-Specific Platform Evaluation for Streaming Applications}
+\title{Fair Evaluation in DSE for ACC-Rich Platforms Supporting Many Applications}
+
+%\titlenote{Produces the permission block, and copyright information}
+%\subtitle{Extended Abstract}
+%\subtitlenote{The full version of the author's guide is available as
+%  \texttt{acmart.pdf} document}
+
+
+%\author{Ben Trovato}
+%\authornote{Dr.~Trovato insisted his name be first.}
+%\orcid{1234-5678-9012}
+%\affiliation{%
+%  \institution{Institute for Clarity in Documentation}
+%  \streetaddress{P.O. Box 1212}
+%  \city{Dublin} 
+%  \state{Ohio} 
+%  \postcode{43017-6221}
+%}
+%\email{trovato@corporation.com}
+
+%\author{G.K.M. Tobin}
+%\authornote{The secretary disavows any knowledge of this author's actions.}
+%\affiliation{%
+%  \institution{Institute for Clarity in Documentation}
+%  \streetaddress{P.O. Box 1212}
+%  \city{Dublin} 
+%  \state{Ohio} 
+%  \postcode{43017-6221}
+%}
+%\email{webmaster@marysville-ohio.com}
+
+% The default list of authors is too long for headers}
+%\renewcommand{\shortauthors}{B. Trovato et al.}
+
+
+\input{tex/Abstract.tex}
+%
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below. 
+%
+%\begin{CCSXML}
+%<ccs2012>
+% <concept>
+%  <concept_id>10010520.10010553.10010562</concept_id>
+%  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+%  <concept_significance>500</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10010520.10010575.10010755</concept_id>
+%  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+%  <concept_significance>300</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10010520.10010553.10010554</concept_id>
+%  <concept_desc>Computer systems organization~Robotics</concept_desc>
+%  <concept_significance>100</concept_significance>
+% </concept>
+% <concept>
+%  <concept_id>10003033.10003083.10003095</concept_id>
+%  <concept_desc>Networks~Network reliability</concept_desc>
+%  <concept_significance>100</concept_significance>
+% </concept>
+%</ccs2012>  
+%\end{CCSXML}
+
+%\ccsdesc[500]{Computer systems organization~Embedded systems}
+%\ccsdesc[300]{Computer systems organization~Redundancy}
+%\ccsdesc{Computer systems organization~Robotics}
+%\ccsdesc[100]{Networks~Network reliability}
+
+% We no longer use \terms command
+%\terms{Theory}
+
+%\vspace{-2pt}
+%\keywords{Fair Evaluation, ACC-Rich Platform, Many Apps DSE}
+%\vspace{-2pt}
+
+\maketitle
+
+\input{tex/Introduction.tex}
+\input{tex/RelatedWork.tex}
+\input{tex/Preliminary.tex}
+\input{tex/MAAR.tex}
+\input{tex/Result.tex}
+\input{tex/Conclusion.tex}
+
+\vspace{-0.5em}
+%\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{unsrt}
+\bibliography{sigproc} 
+
+\end{document}
+

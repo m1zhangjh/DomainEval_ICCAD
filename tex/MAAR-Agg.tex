@@ -1,0 +1,22 @@
+\vspace{-2pt}
+\subsection{Fair Aggregation across Many Apps}
+\label{subsec:aggregation}
+
+MAAR DSE needs to aggregate the normalized application efficiencies to a single fitness value to judge platforms quantitatively. This section proposes multiple aggregation options with mathematics analyses.
+
+Illustrating the aggregation challenge, \figref{fig:eff} shows relative efficiencies of application on an example platform (blue) normalized by the lower bound SW platform (orange) in \figref{fig:effSW} and by the upper bound OOP (grey) in \figref{fig:effOOP}. In \figref{fig:effSW}, the relative efficiency of SW is always equal to 1, because it is normalized by itself. The OOP has higher $rEFF_{SW}$ than the MAAR platform for each application because OOP is the optimal platform design for each application. \figref{fig:effOOP} shows relative efficiency compared with OOP $rEFF_{OOP}$ for SW, MAAR platform and OOP. Similarly, OOP always has a $rEFF_{OOP}$ of 1 because it is normalized by itself. MAAR platform has $rEFF_{OOP}$ between SW and OOP, because MAAR accelerates some kernels to achieve better performance than SW, and is not the application own optimal platform, so it performs worse than the OOP.
+
+\input{tex/MAAR-Agg-avg.tex}
+\input{tex/MAAR-Agg-med.tex}
+\input{tex/MAAR-Agg-log.tex}
+\input{tex/MAAR-Agg-Summary.tex}
+
+   
+
+
+
+
+
+
+
+

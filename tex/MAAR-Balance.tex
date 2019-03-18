@@ -1,0 +1,41 @@
+\vspace{-2pt}
+\subsection{Balancing Across Vastly Different Apps}
+\label{subsec:relativeEff}
+
+Platform evaluation is key to MAAR DSE. Evaluating many applications poses two challenges: (a) balancing performance for vastly different applications, and (b) fair aggregation of performances across all applications. This section introduces relative efficiency as a measure of performance across applications. \secref{subsec:aggregation} discusses the aggregation.
+
+DSEs can optimize various goals, e.g., minimize energy consumption or maximize throughput, under various constraints (e.g., cost, area). In this work, we focus on maximizing energy efficiency, which combines performance and energy as a goal, with area (in number of ACCs) as a constraint. Eq.~\eqref{eq:pipe} calculates the energy efficiency ($EFF$) of the platform using the analytic model in \secref{subsec:ana}. In streaming, energy efficiency can be expressed as throughput [bytes/second] per watt of power~\cite{zhou2013energy}. Throughput is equal to output volume per iteration $D_{out}$ over the latency time $L$. The power is equal to energy consumption $EC$ over its latency $L$.
+
+\vspace{-8pt}
+\begin{equation}
+	EFF = \left. \frac{Th}{Power} \right\vert\ Th = \frac{D_{out}}{L},\ Power = \frac{EC}{L}
+\label{eq:pipe}
+\end{equation}
+
+However, \newtext{as shown in \figref{fig:perf}}, energy efficiency differs vastly across applications, since applications have differing potentials for efficiency. Hence, direct comparison or aggregation is not suitable. To fairly judge platform efficiency across applications, it needs to be normalized to some measure of an application's potential for efficiency.
+
+Efficiency improvement is normalized to the efficiency of running in software (SW) (application's efficiency lower bound), and efficiency achievement is normalized to running on an Own Optimal Platform (OOP) (upper bound). Given a ACC budget, each application has its own optimal platform, obtained through one application DSE, e.g. exhaustive search. As a result, an OOP is the efficiency upper boundary for its application but is not designed for other applications.
+
+Using the two normalizations, Eq.~\eqref{eq:rel} defines two relative efficiencies balancing across applications. $rEFF_{SW}$ represents the energy efficiency improvement of an application $a_i$ on platform $p_X$ over $SW$, and $rEFF_{OOP}$ represents the achievement of $a_i$ on $p_X$ relative to $OOP$.
+
+\vspace{-8pt}
+\begin{equation}
+\begin{split}
+	rEFF_{SW}(a_{i}, p_{X}) &= EFF(a_{i}, p_{X}) / EFF(a_{i}, p_{SW}) \\
+	rEFF_{OOP}(a_{i}, p_{X}) &= EFF(a_{i}, p_{X}) / EFF(a_{i}, p_{OOP})
+\label{eq:rel}
+\end{split}
+\end{equation}
+
+For illustration, \figref{fig:eff} plots the relative efficiency of 40 OpenVX applications on one common platform (blue) with 10 ACCs. While the normalizations help reduce variations in efficiency, they don't eliminate all of the variation due to applications' potentials for efficiency. This poses a challenge for aggregation to evaluate a platform, since it should not over-represent high-efficiency applications.
+
+\vspace{-4pt}
+\begin{figure}[h]
+	\centering
+		\subfloat[Efficiency Improvement]{\includegraphics[width=.46\linewidth]{fig/effSW.pdf}\label{fig:effSW}}
+		\hfill
+		\subfloat[Efficiency Achievement]{\includegraphics[width=.45\linewidth]{fig/effOOP.pdf}\label{fig:effOOP}}
+    \vspace{-8pt}
+	\caption{Relative Efficiency}
+	\label{fig:eff}
+\end{figure}

@@ -1,0 +1,13 @@
+%\vspace{-2pt}
+\subsection{Experiment Setup}
+\label{subsec:res-setup}
+
+In the analytic evaluation, the target MAAR platform settings \newtext{are: (1) An ARM CortexA57 processor with} 4 ARMv8-A cores simulated at the 1.4GHz clock frequency, analytic computing performance of each core is 2000 MIPS. (2) A multi-layer AMBA AHB (32 bit-width, 200MHz) with eight concurrent channels (4R and 4W). (3) Four DMA modules. (4) A shared 8MB memory module with four access ports. (5) The processing speed up on ACCs is varied depending on the parallelization of each kernel. (6) ACCs can communicate directly with each other~\cite{teimouri2016improving}. 
+
+For energy estimation, \newtext{the analytic model assumes 14pJ per 8 bytes data transfer \cite{keckler2011gpus}, 3.8pJ for each kilo operations in the ACCs \cite{cong2014accEnergy}, 800mW power for each ARM core running at 1.4GHz \cite{ARMcorePower},} and 30mW static power per each 100KB of on-chip shared memory \cite{malladi2012towards}.
+
+Allocate one MAAR platform for 40 OpenVX applications captured in annotated dataflow. 
+They are real vision applications found in \cite{Intel}, \cite{AMD}. 
+The number of processing kernels in applications ranges from 3 to 14, and the number of edges/links varies is from 2 to 17. 
+The applications are composed of 35 types of unique processing kernels.
+Each kernel can be instantiated at most once in HW, and multiple instances are scheduled sequentially.

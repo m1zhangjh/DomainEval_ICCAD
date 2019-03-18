@@ -1,0 +1,23 @@
+\subsubsection{Average Aggregation}
+
+To judge the fitness of a platform for all applications, the intuitive method is to aggregate the overall efficiency increase or loss across all applications.
+In \figref{fig:effSW}, a MAAR platform with a more blue area (or a less grey area) is better, because it has a more overall increase (or a less loss). 
+To achieve the best MAAR platform $p_{X}$, DSE should maximize the blue area ($Area_{b}$) or minimize the grey area ($Area_{g}$). 
+Assuming the length of total number of applications in y-axis is equal to 1, 
+$Area_{b}$ is equal to $\sum_{i=0}^{\#a} ( rEFF_{SW}(a_{i}, p_{X}) -  rEFF_{SW}(a_{i}, p_{SW}) ) / \#a $, and $Area_{g}$ is $\sum_{i=0}^{\#a} ( rEFF_{SW}(a_{i}, p_{OOP}) -  rEFF_{SW}(a_{i}, p_{X}) ) / \#a $.
+After simplification, both maximizing $Area_b$ and minimizing $Area_g$ become equivalent to maximizing $\sum_{i=0}^{\#a} rEFF_{SW}(a_{i}, p_{X}) / \#a$, which is the average efficiency improvement of platform $p_{X}$.  
+
+Both methods are equivalent because of the SW and OOP platforms are fixed for a set of applications, so the summed SW and OOP efficiency areas are constant. 
+Therefore, maximizing the efficiency difference between platform $p_{X}$ and SW, or minimizing the difference between $p_{X}$ and OOP leads to the same result, which is to maximize the average efficiency improvement of $p_{X}$. 
+The average of $rEEF_{SW}$ ($A \mhyphen SW$) across all applications becomes the first MAAR DSE fitness function, which is represented in the first line of Eq.~\eqref{eq:avg}.
+
+\vspace{-8pt}
+\begin{equation}
+\begin{split}
+	A\mhyphen SW (p_{X}) &= \sum_{i=0}^{\#a} rEFF_{SW}(a_{i}, p_{X}) / \#a \\
+	A\mhyphen OOP (p_{X}) &= \sum_{i=0}^{\#a} rEFF_{OOP}(a_{i}, p_{X}) / \#a
+\label{eq:avg}
+\end{split}
+\end{equation}
+
+Similarly in \figref{fig:effOOP}, maximizing the difference in $rEFF_{OOP}$ between MAAR platform $p_{X}$ and SW, and minimizing the difference between $p_{X}$ and OOP are both equivalent to maximize the average efficiency achievement $rEFF_{OOP}$, as displayed in the second line of Eq.~\eqref{eq:avg}. $A \mhyphen OOP$ is the second proposed fitness function.
