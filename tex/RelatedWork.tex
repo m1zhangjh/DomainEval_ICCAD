@@ -2,25 +2,31 @@
 \section{Related Work}
 \label{sec:related}
 
+%Architecture
 \newtext{
-Current embedded platform design flow mainly focus on one isolate application. The design flow covers two steps: platform architecture allocation and application-specific mapping (included binding and scheduling)\cite{SCE}\cite{Daedalus}\cite{gruttner2011challenges}.
-There is huge researches about mapping different applications on the existing architecture\cite{marwedel2011mapping}\cite{quan2013scenario}. However, platform allocation for many applications is less touched. 
-
-Some ideas about how to consider many applications can be extracted from platform-based design\cite{PBD}\cite{lukasiewycz2009combined}. It uses statistical information to design the platform template with fixed SW, partial network and memory hierarchy. Then application-specific resource allocation(e.g. ACC allocation) and mapping is applied\cite{PBDmapping}\cite{gladigau2010system}, which narrows the final architecture flexibility from many applications to a single application.
+A larger number of architecture researches have been done for manually designing one common platform for homogeneous applications with repeated computation patterns, e.g. Minerva\cite{reagen2016minerva}, Eyeriss\cite{chen2018eyeriss} for Deep Neural Network applications with repeated convolution computing. 
+To efficiently execute the application with heterogeneous kernels, monolithic ACC has been implemented at the beginning, e.g.\cite{tamitani1992encoder}\cite{chawla2016image}. 
+However, the monolithic application-specific ACC has low flexibility and is not efficient for other applications. To support many applications in one architecture, ACC-rich platform\cite{cong2014accelerator}\cite{tabkhi2014function} is proposed, where many small ACCs can be composed to accelerate different large kernels (or even applications).
+There are some other high-performance architecture works supporting many applications. 
+Reconfigurable computing, such as \cite{wildermann2011operational}, aims to support multiple applications one at a time using FPGA, however, it relies on functional and structural similarities across reconfiguration cycles.
+CPU associated with GPU\cite{grasso2014energy} is also a high-computing choice. However, GPU is too general and exceeds power and area limitation in embedded design\cite{maghazeh2013general}, especially in edge computing.
 }
 
-\newtext{There are some related high-performance architecture works supporting many applications. 
-Domain-Specific ACC (DSA)\cite{chen2014diannao}\cite{esmaeilzadeh2013neural} provides specific acceleration for certain functionality. DSA is only one specific ACC design, not a holistic design solution for heterogeneous ACC-rich architecture.
-Reconfigurable computing, such as \cite{wildermann2011operational}, aims to support multiple applications one at a time using FPGA, however, it relies on functional and structural similarities across reconfiguration cycles.
-CPU associated with GPU\cite{grasso2014energy} is also a high-computing choice, however, GPU is too general and exceeds power and area limitation in embedded design\cite{maghazeh2013general}, especially in edge computing.}
+%Some promising architectures for many-application platforms have been proposed (e.g., \cite{tabkhi2014function, nowatzki2017domain}), but many-application DSE and platform evaluation have less been tackled. 
 
-Some promising architectures for many-application platforms have been proposed (e.g., \cite{tabkhi2014function, nowatzki2017domain}), but many-application DSE and platform evaluation have less been tackled. 
+%Design Automation
+\newtext{
+Current design automation mainly focuses on one isolate application. The design flow covers two steps: platform architecture allocation and application-specific mapping (included binding and scheduling)\cite{SCE}\cite{Daedalus}\cite{gruttner2011challenges}.
+There are huge researches about mapping different applications on the existing architecture\cite{marwedel2011mapping}\cite{quan2013scenario}. However, platform allocation for many applications is less touched. 
+Some ideas about how to consider many applications can be extracted from platform-based design\cite{PBD}\cite{lukasiewycz2009combined}. It uses statistical information to design the platform template with fixed SW, partial network and memory hierarchy. Then application-specific resource allocation (e.g. ACC allocation) and mapping are applied\cite{PBDmapping}\cite{gladigau2010system}, which narrows the final architecture flexibility from many applications to a single application.
+}
 
+
+%algorithm
 \newtext{In DSE algorithm. heuristic methods are widely used to deal with the vast and complex design space.}
 The heuristics methods are comprised of an algorithm to explore design space and a fast evaluation/estimation to judge the performance of chosen platforms.
 Some examples are genetic algorithms (GA)~\cite{quan2014towards}, simulated annealing~\cite{liang2013hardware}, tabu search~\cite{wu2013efficient}, and greedy algorithms~\cite{tang2015hardware}.
-\newtext{These existing DSEs focus on allocating / mapping a platform for a single application, because there is less existing platform evaluation that considers many applications.}
- 
+\newtext{These existing DSEs focus on allocating/mapping a platform for a single application because there is less existing platform evaluation that considers many applications.}
 The only early example of a many-application DSE is Domain Score Selection (DSS)~\cite{zhang2018ds} which proposes a greedy approach for identifying similar function kernels for hardware acceleration, but it uses an unfair platform evaluation, comparing average throughput improvement, wherein a small number of high-performance applications dominate the evaluation. 
 
 %Due to the vast and complex design space, heuristic methods are widely used in DSEs.

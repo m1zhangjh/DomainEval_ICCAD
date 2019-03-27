@@ -7,14 +7,24 @@
 
 
 % Gunar suggest Abstract
-Using heterogeneous accelerator-rich (ACC-rich) platforms which combine processor cores with specialized HW accelerators (ACCs), is one main approach to high-performance low-power computing.
-ACCs can be shared across many applications, when they have functional and structural similarities, especially in streaming applications, such as video analytics, software-defined radio, and radar.
-However, many applications on the same platform are only considered as individual mapping problem to a fixed platform. Current Design Space Exploration (DSE) of platform allocation mostly focuses on single applications.
-To increase the scope of DSE of platform allocation to consider many applications, efficient traversal and fair evaluation of platforms across applications are needed.
+%Using heterogeneous accelerator-rich (ACC-rich) platforms which combine processor cores with specialized HW accelerators (ACCs), is one main approach to high-performance low-power computing.
+%ACCs can be shared across many applications, when they have functional and structural similarities, especially in streaming applications, such as video analytics, software-defined radio, and radar.
+%However, many applications on the same platform are only considered as individual mapping problem to a fixed platform. Current Design Space Exploration (DSE) of platform allocation mostly focuses on single applications.
+%To increase the scope of DSE of platform allocation to consider many applications, efficient traversal and fair evaluation of platforms across applications are needed.
+
+
+Using heterogeneous accelerator-rich (ACC-rich) platforms which combine processor cores with specialized HW accelerators (ACCs), is one main approach to achieve high-performance and low-power especially for streaming applications, such as video analytics, software-defined radio, and radar. 
+Here, a set of applications with functional and structural similarities could benefit from a common platform with the same set of ACCs. 
+However, current Design Space Exploration (DSE) approaches mostly focuses on allocating one dedicated platform for one individual application. 
+Automating the design of a common platform for a set of applications requires increasing the scope of DSE to consider many applications, efficient design space traversal and a fair evaluation across applications.
+
 
 This paper introduces Many Applications ACC-Rich (MAAR) DSE with kernel granularity.
-Key contributions in MAAR are: (1) a genetic algorithm (GA) guided by \newtext{a fair and efficient evaluation} to allocate a platform for many applications, (2) a definition of relative efficiency to fairly compare the improvement of applications on a platform, and (3) evaluating aggregation of the performance of many applications to quantitatively compare the efficiency of platforms. 
-This paper validates MAAR DSE by using it to allocate a platform for OpenVX applications. Compared with single application DSE (1appDSE) and previous domain DSE Dynamic Score Selection (DSS~\cite{zhang2018ds}), MAAR has 4.01 and 1.39 times the average efficiency improvement respectively. With a budget of 12 ACCs, MAAR enables more applications (67.5\% of applications) to achieve high efficiency (efficiency improvement $\geq$ 3) than 1appDSE (15\%) and DSS(42.5\%).
+Key contributions in MAAR are:
+(1) a genetic algorithm (GA) guided by \newtext{a fair and efficient evaluation} to allocate one platform for many applications, 
+(2) a definition of relative efficiency to fairly compare the improvement of applications on a platform, 
+and (3) evaluating aggregation of the performance of many applications to quantitatively compare the efficiency of platforms. 
+This paper validates MAAR DSE by using it OpenVX applications. Compared to a single application DSE (1AppDSE) and previous domain DSE Dynamic Score Selection (DSS~\cite{zhang2018ds}), MAAR has a 4.01 and 1.39 times higher average efficiency improvement respectively. With a budget of 12 ACCs, MAAR enables more applications (67.5\% of applications) to achieve high efficiency (efficiency improvement $\geq$ 3) than 1AppDSE (15\%) and DSS(42.5\%).
 
 %\vspace{-4pt}
 
