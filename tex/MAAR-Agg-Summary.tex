@@ -1,23 +1,23 @@
 
-\tabref{tab:fit} summarizes all proposed aggregation methods, which decide the fitness functions (evaluation) in MAAR DSE. There are two average aggregation methods using $rEFF_{SW}$ and $rEFF_{OOP}$, two median aggregation methods also using $rEFF_{SW}$ and $rEFF_{OOP}$, and one logarithmic area aggregation method. 
+\tabref{tab:fit} summarizes all proposed aggregation methods, which decide the fitness functions (evaluation) in UPA. There are two average aggregation methods using $rEFF_{SW}$ and $rEFF_{ODP}$, two median aggregation methods also using $rEFF_{SW}$ and $rEFF_{ODP}$, and one logarithmic area aggregation method. 
 
 
 \begin{table}[h]
-	\caption{Fitness Functions (Evaluations) in MAAR DSE}
+	\caption{Fitness Functions (Evaluations) in UPA}
 	\vspace{-8pt}
 	\label{tab:fit}
 	\centering
 	\begin{tabular}{p{0.10\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}}
 		\toprule
-		& $rEFF_{SW}$ & $rEFF_{OOP}$ \\
+		& $rEFF_{SW}$ & $rEFF_{ODP}$ \\
 		\midrule
 		\hline
-		Avg (A-)& \(\displaystyle \sum_{i=0}^{\#a} rEFF_{SW}(a_{i}, p_{X})/\#a \) & \(\displaystyle\sum_{i=0}^{\#a} rEFF_{OOP}(a_{i}, p_{X})/\#a \)\\
+		Avg (A-)& \(\displaystyle \sum_{i=0}^{\#a} rEFF_{SW}(a_{i}, p_{X})/\#a \) & \(\displaystyle\sum_{i=0}^{\#a} rEFF_{ODP}(a_{i}, p_{X})/\#a \)\\
 		\hline
 		%\multirow{2}{*}{Median (M-)} & \(\displaystyle med(rEFF_{SW}(a_{i}, p_{X})) \),  &	\(\displaystyle med(rEFF_{OOP}(a_{i}, p_{X})) \), \\
 		%& $i = 0,1,...,\#a$ & $i = 0,1,...,\#a$ \\
 		
-		Median (M-) & \(\displaystyle med(rEFF_{SW}(a_{i}, p_{X})) \),  $i = 0,1,...,\#a$  &	\(\displaystyle med(rEFF_{OOP}(a_{i}, p_{X})) \),  $i = 0,1,...,\#a$ \\
+		Median (M-) & \(\displaystyle med(rEFF_{SW}(a_{i}, p_{X})) \),  $i = 0,1,...,\#a$  &	\(\displaystyle med(rEFF_{ODP}(a_{i}, p_{X})) \),  $i = 0,1,...,\#a$ \\
 		
 		\hline
 		logArea (Alog)& \multicolumn{2}{c}{\(\displaystyle \sum_{i=0}^{\#a} ( \log (EFF(a_{i}, p_{X})) ) / \#a \)}\\

@@ -14,33 +14,34 @@
 %(One common platform benefit)
 Streaming computing is promising in many fields, e.g. video analytics, software-defined ration, and radar, however, faces area and power limitations, especially in edge computing. 
 Using heterogeneous ACC-rich platforms~\cite{melpignano2012platform} that combine general-purpose processor(s) (SW) and custom ACCs (HW) is the primary approach for efficient, high-performance stream computing.
-Streaming applications within the same field always sharing similar functionalities and structures, and one common platform with the same set of ACCs could benefit.
-For example, in \figref{fig:domainDSE}, a set of applications sharing B-C kernels benefit from a platform with B-C ACCs.
-One common platform supporting many applications saves the prohibitively re-design and manufacture cost compared with application-specific platforms.
+Designing one platform for each application is prohibitively expensive, due to the non-recurring engineering (NRE) cost.
+Streaming applications within the same field always sharing similar functionalities and structures, and one unified platform with the same set of ACCs could benefit.
+%For example, in \figref{fig:domainDSE}, a set of applications sharing B-C kernels benefit from a platform with B-C ACCs.
+%Designing a unified platform supporting many applications saves the prohibitively non-recurring engineering (NRE) cost compared with application-specific dedicated platforms designs.
 
 %(Targeting Area: Heterogeneous Apps + Many ACCs Arch)
-Creating a common platform for a set of applications manually is already very hard for applications with homogeneous, repeated computation patterns, such as employed in Deep Convolutional Neural Networks\cite{chen2018eyeriss}. 
+Creating a unified platform for a set of applications manually is already very hard for applications with homogeneous, repeated computation patterns, such as employed in Deep Convolutional Neural Networks\cite{chen2018eyeriss}. 
 It becomes intractable for applications such as computer vision and software-defined radio with a wide range of computationally intensive and functionality diverse heterogeneous kernels. 
 A monolithic ACC supports all kernels is an efficient application-specific solution but is not suitable for many applications due to its low flexibility and diverse acceleration requirements from different applications.
 Many composable ACCs is a good choice to support many applications\cite{cong2014accelerator}. The number of ACCs will increase dramatically, where individual ACCs are less monolithic but smaller and configurable. ACCs can be composed to accelerate larger kernels (or even applications). 
-Since the high complexity of ACC allocation supporting many streaming applications, the design automation is needed.
+Then the complexity of ACC allocation becomes high, and the design automation is needed.
 
 %(Current Design Automation)
-Current Design Space Exploration (DSE) mostly focuses on allocating one dedicated platform for one individual application. 
-Some many applications ideas can be extracted from Platform-Based Design (PBD)\cite{PBD}. PBD design the interconnection for many applications based on statistical information, however, the ACC allocation is derived by engineering experiences. There are also many researches about the mapping of different applications to an existing platform in isolation. However, there is no design automation for allocating one common platform for many applications. 
+Current design automation mostly focuses on allocating one dedicated platform for one individual application. 
+Some many applications ideas can be extracted from Platform-Based Design (PBD)\cite{PBD}. PBD designs the interconnection for many applications based on statistical information, however, the ACC allocation is derived by engineering experiences. There are also many researches about the mapping of different applications to an existing platform in isolation. However, there is no design automation for allocating one common platform for many applications. 
 
 
 \begingroup
 \setlength{\columnsep}{8pt}%
 \begin{wrapfigure}{l}{0.5\linewidth}
-	%\vspace{-6pt}
+	\vspace{-4pt}
 	\begin{center}
 		\includegraphics[width=\linewidth]{fig/MAARflow.pdf}
 	\end{center}
-	%\vspace{-8pt}
-	\caption{One Common Platform for Many Apps}
+	\vspace{-8pt}
+	\caption{Unified Platform for Many Apps}
 	\label{fig:domainDSE}
-	%\vspace{-4pt}
+	\vspace{-4pt}
 \end{wrapfigure}
 
 
@@ -83,7 +84,9 @@ Furthermore, the evaluation for many applications needs to have a fair focus on 
 
 
 
-\newtext{To solve the challenges,} this paper introduces MAAR DSE, guided by a platform evaluation for many applications with a balanced focus. To this end, the contributions of this paper are: (1) providing the flow of MAAR DSE, which is a combination of a heuristic traverse, elitist genetic algorithm (GA) and a fair evaluation for many applications; (2) defining relative efficiency of an application on a platform to have a normalized measure of improvement/achievement for different applications; (3) evaluating multiple methods to aggregate efficiency of many applications on a platform to quantitatively compare different platforms. The MAAR DSE fairly considers the contribution of many applications, and produces an efficient platform supporting all applications. In experiments using OpenVX applications, MAAR platforms achieve 3.09 times the average efficiency improvement of one application DSE (1AppDSE), and 1.39 times the improvement of DSS, a previous domain platform DSE~\cite{zhang2018ds}. 
+\newtext{To solve the challenges,} this paper introduces Unified ACC-rich Platform Allocation (UPA), guided by a platform evaluation for many applications with a balanced focus. To this end, the contributions of this paper are: (1) providing the flow of UPA, which is a combination of a heuristic traverse, elitist genetic algorithm (GA) and a fair evaluation for many applications; (2) defining relative efficiency of an application on a platform to have a normalized measure of improvement/achievement for different applications; (3) evaluating multiple methods to aggregate efficiency of many applications on a platform to quantitatively compare different platforms. 
+The UPA fairly considers the contribution of many applications, and produces an efficient platform supporting all applications. 
+In experiments using OpenVX applications, UPA provides unified platforms achieved 3.09 times the average efficiency improvement of dedicated platforms (FDP), and 1.39 times the improvement of DSS~\cite{zhang2018ds}, a previous unified platform design with an unfair evaluation. 
 
 
 This paper is organized as follows: \secref{sec:related} summarizes the related works. \secref{sec:pre} introduces target ACC-rich platform and evaluation model for individual application. \secref{sec:eval} introduces MAAR DSE and fair MAAR platform evaluation methodology. \secref{sec:results} evaluates and analyzes the benefits of MAAR DSE with fair evaluation. Finally \secref{sec:conclusion} concludes this paper.

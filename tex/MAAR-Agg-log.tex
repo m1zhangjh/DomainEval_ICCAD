@@ -1,7 +1,7 @@
 \subsubsection{Log Area Aggregation}
 
 In previous average aggregation, high relative efficiency applications have more effect on fitness. The value difference between high and low relative efficiency across applications is still a little significant, especially in $rEFF_{SW}$. To shrink the difference among applications and pay more attention to low-efficiency applications, a new aggregation with logarithm is proposed.
-Instead of maximizing/minimizing the relative efficiency difference between MAAR platform and SW/OOP, the new method ($Alog$) first takes the logarithm of the efficiency to shrink the difference in relative efficiency among applications, then maximizes/minimizes the resulting logarithmic area.
+Instead of maximizing/minimizing the relative efficiency difference between UP and SW/ODP, the new method ($Alog$) first takes the logarithm of the efficiency to shrink the difference in relative efficiency among applications, then maximizes/minimizes the resulting logarithmic area.
 
 \begingroup\makeatletter\def\f@size{6.9}\check@mathfonts
 \vspace{-8pt}
@@ -21,9 +21,9 @@ Instead of maximizing/minimizing the relative efficiency difference between MAAR
 \vspace{-8pt}
 \begin{equation}
 \begin{split}
-	Alog\mhyphen OOP(p_{X})
-	&= \sum_{i=0}^{\#a} ( \log rEFF_{OOP}(a_{i}, p_{X}) - \log rEFF_{OOP}(a_{i}, p_{SW}) ) / \#a \\
-	&= \sum_{i=0}^{\#a} ( \log \frac{EFF(a_{i}, p_{X})}{EFF(a_{i}, p_{OOP})} - \log \frac{EFF(a_{i}, p_{SW})}{EFF(a_{i}, p_{OOP})} ) / \#a \\
+	Alog\mhyphen ODP(p_{X})
+	&= \sum_{i=0}^{\#a} ( \log rEFF_{ODP}(a_{i}, p_{X}) - \log rEFF_{ODP}(a_{i}, p_{SW}) ) / \#a \\
+	&= \sum_{i=0}^{\#a} ( \log \frac{EFF(a_{i}, p_{X})}{EFF(a_{i}, p_{ODP})} - \log \frac{EFF(a_{i}, p_{SW})}{EFF(a_{i}, p_{ODP})} ) / \#a \\
 	&= \sum_{i=0}^{\#a} ( \log rEFF_{SW}(a_{i}, p_{X}) ) / \#a
 	%&= \sum_{i=0}^{\#a} ( \log EFF(a_{i}, p_{X}) ) / \#a - \sum_{i=0}^{\#a} ( \log EFF(a_i, p_{SW}) ) / \#a
 \label{eq:logOOP}
@@ -34,14 +34,14 @@ Instead of maximizing/minimizing the relative efficiency difference between MAAR
 
 Eq.~\eqref{eq:logSW} shows the the log area of the efficiency improvement $Alog\mhyphen SW$. 
 \newtext{
-Since $\log rEFF_{SW}(a_i, p_{SW}) = 0$ for all $a_i$, $Alog\mhyphen SW$ becomes maximizing $\sum_{i=0}^{\#a} \log rEFF_{SW}(a_{i}, p_{X}) / \#a$. In Eq.~\eqref{eq:logOOP}, the log area of achievement $Alog\mhyphen OOP$ becomes the same as $Alog\mhyphen SW$, after relative efficiency transformation and logarithm simplification.
+Since $\log rEFF_{SW}(a_i, p_{SW}) = 0$ for all $a_i$, $Alog\mhyphen SW$ becomes maximizing $\sum_{i=0}^{\#a} \log rEFF_{SW}(a_{i}, p_{X}) / \#a$. In Eq.~\eqref{eq:logOOP}, the log area of achievement $Alog\mhyphen ODP$ becomes the same as $Alog\mhyphen SW$, after relative efficiency transformation and logarithm simplification.
 }
 
 \begingroup\makeatletter\def\f@size{6.9}\check@mathfonts
 \vspace{-8pt}
 \begin{equation}
 \begin{split}
-	Alog(p_{X}) &\equiv Alog\mhyphen SW(p_{X}) \equiv Alog\mhyphen OOP(p_{X}) \\
+	Alog(p_{X}) &\equiv Alog\mhyphen SW(p_{X}) \equiv Alog\mhyphen ODP(p_{X}) \\
 	&= \sum_{i=0}^{\#a} ( \log rEFF_{SW}(a_{i}, p_{X}) ) / \#a  \\
 	&= \sum_{i=0}^{\#a} ( \log \frac{EFF(a_{i}, p_{X})}{EFF(a_{i}, p_{SW})}) / \#a \\
 	&= \sum_{i=0}^{\#a} ( \log EFF(a_{i}, p_{X}) ) / \#a - \sum_{i=0}^{\#a} ( \log EFF(a_i, p_{SW}) ) / \#a
@@ -53,7 +53,7 @@ Since $\log rEFF_{SW}(a_i, p_{SW}) = 0$ for all $a_i$, $Alog\mhyphen SW$ becomes
 \newtext{
 Next in Eq.~\eqref{eq:logDetial}, $Alog$ can be transformed into two components, the logarithmic area of platform $p_{X}$ efficiency subtracts the logarithmic area of software efficiency. 
 }
-Since the efficiency of an application in software $EFF(a_i, p_{SW})$ is constant for all applications, it does not affect which platform $Alog\mhyphen SW$ is maximized for. Therefore, the normalization factor becomes unimportant in log area, so $Alog$ becomes equivalent to the log area of efficiency as shown in Eq.~\eqref{eq:log}. The fact that the normalization factor ``disapears'' in $Alog$ suggests that taking the logarithm of the efficiency of an application removes its dependence on the application's potential for efficiency without the need for a specific normalization. 
+Since the efficiency of an application in software $EFF(a_i, p_{SW})$ is constant for all applications, it does not affect which platform $Alog\mhyphen SW$ is maximized for. Therefore, the normalization factor becomes unimportant in log area, so $Alog$ becomes equivalent to the log area of efficiency as shown in Eq.~\eqref{eq:log}. The fact that the normalization factor ``disapears'' in $Alog$ suggests that taking the logarithm of the efficiency of an application removes its dependence on the application's potential for efficiency without the need for a specific normalization.
 
 
 \begingroup\makeatletter\def\f@size{9}\check@mathfonts
