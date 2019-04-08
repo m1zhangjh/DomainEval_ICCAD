@@ -32,14 +32,16 @@
 
 
 
-\tabref{tab:maar} shows UPA benefits when designing one unified platform for the OpenVX market with 1 to 6 ACCs. 
+\tabref{tab:maar} lists which ACCs are allocated for one unified platform for the OpenVX market with 1 to 6 ACCs. 
 %gives insight on which OpenVX kernels MAAR chooses for a platform with 1 to 6 ACCs, as well as how often each ACC is used. 
 All kernels are compute intense yielding a high efficiency improvement if accelerated. \textit{Custom Convolution} is most frequently used (39 times) as it is the basis of many vision kernels. For a platform with 2 ACCs, UPA adds \textit{Canny Edge} (9 times used). Overall, kernels appearing more frequently are not necessarily selected by UPA. Sometimes, less frequent but compute-intensive functions, e.g. \textit{Optical Flow Pyramid (LK)} added as a 4th ACC, have a higher priority.
 However, this also indicates some limits of the input data flow graphs which were derived from the application's OpenVX calls. This kernel could be decomposed in many smaller kernels, which then subsequently could be reused more. 
 Considering the specialization of kernels, e.g. \textit{Gaussian Filter} is a specialization of \textit{Convolution} which takes advantage of weight symmetries, is part of the future work.
 
 \newtext{
-This section demonstrates the limits of composability of dedicated platform allocation for single application. In \figref{fig:alloop}, the UPA with a 2 ACCs budget allocates \emph{Custom Convlution} and \emph{Canny Edge Detector} kernels, and achieves 67\% the average energy efficiency of ODP, which uses 25 unique ACCs in ODP shown in \figref{fig:oopHW}. It means a unified platform accelerating a small number of high-computing kernels can achieve good energy efficiency across many applications.
+\figref{fig:oopHW} lists the number of unique ACCs in the platform(s) for different allocations, and demonstrates the limits of composability of dedicated platform allocation for a single application.
+ODP has one platform per application, so there are 40 platforms for all applications. Each dedicated platform has a number of ACCs equal to the budget, so there are a large number of unique ACCs for all dedicated platforms. When each dedicated platform has 1 ACC, there are 14 unique ACCs, indicating some reuse. However, if each dedicated platform has 2 ACCs, there are 25 unique ACCs (11 more) showing the limits of reuse. 
+In \figref{fig:alloop}, the UPA with a 2 ACCs budget allocates \emph{Custom Convlution} and \emph{Canny Edge Detector} kernels, and achieves 67\% the average efficiency of ODP, which uses 25 unique ACCs shown in \figref{fig:oopHW}. It means a unified platform accelerating a small number of high-computing kernels can achieve good efficiency across many applications.
 }
 
 % the order of kernel in OpenVX allocation. CustomConvolution CannyEdgeDetector HarrisCorners OpticalFlowPyramid(LK)  BoxFilter GaussianFilter

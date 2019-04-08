@@ -17,9 +17,8 @@
 
 %This section discusses the impact of aggregation on the fairness when allocating a common platform.
 To visualize fairness, \figref{fig:OpenVXsw} shows the cumulative probability of efficiency improvement for ODP and UPA with different aggregations given a budget (ACCs = 6, 12, 19).
-\newtext{
 Similar to \figref{fig:sw12all}, the x-axis is efficiency improvement ($rEFF_{SW}$), and y-axis describes the cumulative probability. The line positioned more toward the bottom right has a better efficiency improvement, and OOP black line is the upper bound. 
-}
+
 
 %The x-axis denotes efficiency improvement ($rEFF_{SW}$), and y-axis is the cumulative probability.
 %A point ($x$, $y$) indicates that a proportion $y$ of applications have a relative efficiency $x$ or less.  
@@ -29,7 +28,7 @@ Similar to \figref{fig:sw12all}, the x-axis is efficiency improvement ($rEFF_{SW
 
 
 With ACCs increasing from 6 (\figref{fig:sw6}) to 19 (\figref{fig:sw19}), the UPA lines move close to ODP line, which means the efficiency improvement of UPA platform are catching up to ODP performance. 
-\newtext{After ACCs>10, ODP has already allocated enough ACCs in each application-specific platform (mentioned in \figref{fig:allsw}), there are no remaining kernels to accelerate, then ODP lines are identical in \figref{fig:sw12} and \figref{fig:sw19}.} 
+After ACCs>10, ODP has already allocated enough ACCs in each application-specific platform (mentioned in \figref{fig:allsw}), there are no remaining kernels to accelerate, then ODP lines are identical in \figref{fig:sw12} and \figref{fig:sw19}. 
 In \figref{fig:OpenVXsw}, the up right parts of the lines represent high-efficiency applications, and the bottom left parts of lines show the effect of low-efficiency applications. 
 
 

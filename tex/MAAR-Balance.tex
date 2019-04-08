@@ -1,10 +1,10 @@
 \vspace{-2pt}
-\subsection{Balancing Across Vastly Different Apps}
+\subsection{Normalizing Across Vastly Different Apps}
 \label{subsec:relativeEff}
 
-Platform evaluation is key to UPA. Evaluating many applications poses two challenges: (a) balancing performance for vastly different applications, and (b) fair aggregation of performances across all applications. This section introduces relative efficiency as a measure of performance across applications. \secref{subsec:aggregation} discusses the aggregation.
+Platform evaluation is key to UPA. Evaluating many applications poses two challenges: (a) normalizing performance metric for vastly different applications, and (b) fair aggregation of performances across all applications. This section introduces relative efficiency as a measure of performance across applications. \secref{subsec:aggregation} discusses the aggregation.
 
-Platform design can optimize various goals, e.g., minimize energy consumption or maximize throughput, under various constraints (e.g., cost, area). In this work, we focus on maximizing energy efficiency, which combines performance and energy as a goal, with area (in number of ACCs) as a constraint. Eq.~\eqref{eq:pipe} calculates the energy efficiency ($EFF$) of the platform using the analytic model in \secref{subsec:ana}. In streaming, energy efficiency can be expressed as throughput [bytes/second] per watt of power~\cite{zhou2013energy}. Throughput is equal to output volume per iteration $D_{out}$ over the latency time $L$. The power is equal to energy consumption $EC$ over its latency $L$.
+Platform design can optimize various goals, e.g., minimize energy consumption or maximize throughput, under various constraints (e.g., cost, area). In this work, we focus on maximizing energy efficiency, which combines performance and energy as a goal, with area (in number of ACCs) as a constraint. Eq.~\eqref{eq:pipe} calculates the energy efficiency ($EFF$) of the platform using the analytic model from \secref{subsec:ana}. In streaming, energy efficiency can be expressed as throughput [bytes/second] per watt of power~\cite{zhou2013energy}. Throughput is equal to output volume per iteration $D_{out}$ over the latency time $L$. The power is equal to energy consumption $EC$ over its latency $L$. \newtext{In the rest of this paper, the "efficiency" means "energy efficiency" ($EFF$) when the application(s) executed on the platform.}
 
 \vspace{-8pt}
 \begin{equation}
@@ -12,11 +12,19 @@ Platform design can optimize various goals, e.g., minimize energy consumption or
 \label{eq:pipe}
 \end{equation}
 
-However, energy efficiency differs vastly across applications, since applications have differing potentials for efficiency. Hence, direct comparison or aggregation is not suitable. To fairly judge platform efficiency across applications, it needs to be normalized to some measure of an application's potential for efficiency.
+\newtext{
+However, energy efficiency differs vastly across applications even with similar acceleration supporting. E.g., the applications with a large volume of output data have much better efficiency than other applications due to high throughput. 
+Moreover, applications have differing potentials for efficiency. The computing-dense applications have a larger potential to increase their efficiency than the applications with less computing.
+Hence, direct comparison or aggregation is not suitable. To fairly judge platform efficiency across applications, it needs to be normalized to some measure of an application's base efficiency or potential for efficiency increasing.
+}
 
-Efficiency improvement is normalized to the efficiency of running in software (SW) (application's efficiency lower bound), and efficiency achievement is normalized to running on an Own Optimal Dedicated Platform (ODP) (upper bound). Given a ACC budget, each application has its own optimal platform, obtained through one application exploration, e.g. exhaustive search. As a result, an ODP is the efficiency upper boundary for its application but is not designed for other applications.
+We consider two bounds for normalization. Pure software execution (SW) marks the lower bound. The upper bound is execution on an Own Optimal Dedicated Platform (ODP), which is individual to the particular application ignoring all others in the set. Given a ACC budget, each application has its own optimal platform, obtained through one application exploration, e.g. exhaustive search. As a result, an ODP is the efficiency upper boundary for its application but is not designed for other applications.
 
-Using the two normalizations, Eq.~\eqref{eq:rel} defines two relative efficiencies balancing across applications. $rEFF_{SW}$ represents the energy efficiency improvement of an application $a_i$ on platform $p_X$ over $SW$, and $rEFF_{ODP}$ represents the achievement of $a_i$ on $p_X$ relative to $ODP$.
+\newtext{
+Using the two normalizations, Eq.~\eqref{eq:rel} defines two relative efficiencies balancing across applications. $rEFF_{SW}$ represents the  Efficiency Improvement of an application $a_i$ on platform $p_X$ over $SW$, and $rEFF_{ODP}$ represents the Efficiency Achievement of $a_i$ on $p_X$ relative to $ODP$.
+In another view of efficiency achievement, $1 - rEFF_{ODP}$ represents how much the efficiency loss is from fully satisfied efficiency potential with the same  ACC budget.
+}
+
 
 \vspace{-8pt}
 \begin{equation}
@@ -38,4 +46,5 @@ For illustration, \figref{fig:eff} plots the relative efficiency of 40 OpenVX ap
     \vspace{-8pt}
 	\caption{Relative Efficiency}
 	\label{fig:eff}
+    \vspace{-4pt}
 \end{figure}

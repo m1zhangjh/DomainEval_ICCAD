@@ -2,26 +2,45 @@
 \subsubsection{Exploration Time}
 \label{subsubsec:agg-time}
 
-\begin{figure}[h]
-\vspace{-8pt}
-	\centering
-		\subfloat[OpenVX: Diff \#ACCs] {\includegraphics[width=.48\linewidth]{fig/timeACCs.pdf}\label{fig:timeACCs}}
-		\hfill
-		\subfloat[Synthetic: Diff \#Apps] {\includegraphics[width=.48\linewidth]{fig/timeApps.pdf}\label{fig:timeApps}}
-	\vspace{-8pt}
-	\caption{Exploration Time}
-	\label{fig:exTime}
-\end{figure}
+%\begin{figure}[h]
+%\vspace{-8pt}
+%	\centering
+%		\subfloat[OpenVX: Diff \#ACCs] {\includegraphics[width=.48\linewidth]{fig/timeACCs.pdf}\label{fig:timeACCs}}
+%		\hfill
+%		\subfloat[Synthetic: Diff \#Apps] {\includegraphics[width=.48\linewidth]{fig/timeApps.pdf}\label{fig:timeApps}}
+%	\vspace{-8pt}
+%	\caption{Exploration Time}
+%	\label{fig:exTime}
+%\end{figure}
 
 \newtext{
-\figref{fig:exTime} shows the exploration time of UPA with different aggregations running on Intel i5-3450 with 3.10GHz. In \figref{fig:timeACCs}, the UPA exploration time increases with the increasing of ACCs budget.  
-the $A \mhyphen ODP$ and $M \mhyphen ODP$ are much slower than other aggregations because their normalization needs to find the optimal platform of each application (an exploration problem in itself). In average, the time of finding optimal platforms in $A \mhyphen ODP$ and $M \mhyphen ODP$ takes 32.56\% of total exploration. While, $A \mhyphen SW$, $M \mhyphen SW$ and $Alog$ evaluations do not need these optimal platforms. 
+
+\begingroup
+\setlength{\columnsep}{8pt}%
+\begin{wrapfigure}{l}{0.5\linewidth}
+	\vspace{-4pt}
+	\begin{center}
+		\includegraphics[width=\linewidth]{fig/timeACCs.pdf}
+	\end{center}
+	\vspace{-8pt}
+	\caption{Exploration Time}
+	\label{fig:timeACCs}
+	\vspace{-4pt}
+\end{wrapfigure}
+
+\figref{fig:timeACCs} shows the exploration time of UPA with different aggregations running on Intel i5-3450 with 3.10GHz. The UPA exploration time increases with the increasing of ACCs budget.  
+The $A \mhyphen ODP$ and $M \mhyphen ODP$ are much slower than other aggregations because their normalization needs to find the optimal platform of each application (an exploration problem in itself). In average, the time of finding optimal platforms in $A \mhyphen ODP$ and $M \mhyphen ODP$ takes 32.56\% of total exploration. While, $A \mhyphen SW$, $M \mhyphen SW$ and $Alog$ evaluations do not need these optimal platforms. 
 After ACCs>16, DSE exploration time stops increasing, because there are only 35 OpenVX unique kernels in applications, which could be instantiated once in HW. The design complexity of 16-19 ACCs from 35 kernels is not increased significantly.
 
 
-\figref{fig:timeApps} describes the exploration time with an increasing number of applications, which are synthetically generated.
-With the number of applications increasing, the $A \mhyphen ODP$ and $M \mhyphen ODP$ exploration time increase much faster than $A \mhyphen SW$, $M \mhyphen SW$ and $Alog$. The reason is that the number of application optiaml platform search dramatic increases the exploration time of $M \mhyphen ODP$ and $A \mhyphen ODP$. 
+\endgroup
+
 }
+
+
+%\figref{fig:timeApps} describes the exploration time with an increasing number of applications, which are synthetically generated.
+%With the number of applications increasing, the $A \mhyphen ODP$ and $M \mhyphen ODP$ exploration time increase much faster than $A \mhyphen SW$, $M \mhyphen SW$ and $Alog$. The reason is that the number of application optiaml platform search dramatic increases the exploration time of $M \mhyphen ODP$ and $A \mhyphen ODP$. 
+
 
 
 \begin{table}[h]
@@ -30,25 +49,36 @@ With the number of applications increasing, the $A \mhyphen ODP$ and $M \mhyphen
 	\label{tab:cmp}
 	\centering
 	\arraybackslash
-	\begin{tabular}{>{\centering\arraybackslash}p{0.125\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.175\linewidth}}
+	\begin{tabular}{
+	>{\centering\arraybackslash}p{0.125\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.05\linewidth}|
+	>{\centering\arraybackslash}p{0.175\linewidth}
+	}
 		\toprule
-		& $rEFF_{SW}$ View & $rEFF_{ODP}$ View & Scalability \\
+        \multirow{2}{*}{} & \multicolumn{3}{l|}{ $rEFF_{SW}$ } & \multicolumn{3}{l|}{ $rEFF_{ODP}$ } & Scalability \\
+        & L       & M       & H       & L        & M       & H       &             \\
 		\midrule
+		\hline
+A-SW & \textcolor{red}{$\downarrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} \\
+		\hline
 		
+A-ODP & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} \\
 		\hline
-		A-SW & Bad (low- med- EFF apps) & Bad (low- med- EFF apps) & Good \\
+M-SW  & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} \\
 		\hline
-		A-OOP & Good & Good & Bad \\
+M-ODP & \textcolor{red}{$\downarrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{red}{$\downarrow$} \\
 		\hline
-		M-SW & Bad (high- EFF apps) & Bad (high- EFF apps) & Good \\
-		\hline
-		M-OOP & Bad (low- med- EFF apps) & Bad (low- EFF apps) & Bad \\
-		\hline
-		Alog & Good & Good & Good \\
+Alog  & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} & \textcolor{green}{$\uparrow$} \\
 		
 		\bottomrule
 	\end{tabular}
 \end{table}
+
 
 \newtext{
 \tabref{tab:cmp} summaries the performance of UPA with different aggregations. 

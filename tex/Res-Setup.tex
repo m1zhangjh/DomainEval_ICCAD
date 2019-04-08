@@ -2,12 +2,13 @@
 \subsection{Experiment Setup}
 \label{subsec:res-setup}
 
-In the analytic evaluation, the target unified platform settings \newtext{are: (1) An ARM CortexA57 processor with} 4 ARMv8-A cores simulated at the 1.4GHz clock frequency, analytic computing performance of each core is 2000 MIPS. (2) A multi-layer AMBA AHB (32 bit-width, 200MHz) with eight concurrent channels (4R and 4W). (3) Four DMA modules. (4) A shared 8MB memory module with four access ports. (5) The processing speed up on ACCs is varied depending on the parallelization of each kernel. (6) ACCs can communicate directly with each other~\cite{teimouri2016improving}. 
+In the analytic evaluation, the target unified platform settings are: 
+(1) An ARM CortexA57 processor with 4 ARMv8-A cores at 1.4GHz (approx 2000 MIPS).
+(2) A multi-layer interconnect (32 bit-width, 200MHz) with eight concurrent channels (4R and 4W). (3) Four DMA modules. (4) A shared 8MB memory module with four access ports. (5) The processing speed up on ACCs is varied depending on the parallelization of each kernel. (6) ACCs can communicate directly with each other~\cite{teimouri2016improving}. 
 
-For energy estimation, \newtext{the analytic model assumes 14pJ per 8 bytes data transfer \cite{keckler2011gpus}, 3.8pJ for each kilo operations in the ACCs \cite{cong2014accelerator}, 800mW power for each ARM core running at 1.4GHz \cite{ARMcorePower},} and 30mW static power per each 100KB of on-chip shared memory \cite{malladi2012towards}.
+Tthe analytic model uses published measurements for energy estimation: 14pJ per 8 bytes data transfer \cite{keckler2011gpus}, 3.8pJ for each kilo operations in the ACCs \cite{cong2014accelerator}, 800mW power for each ARM core running at 1.4GHz \cite{ARMcorePower}, and 30mW static power per each 100KB of on-chip shared memory \cite{malladi2012towards}.
 
-Allocate one UPA platform for 40 OpenVX applications captured in annotated dataflow. 
-They are real vision applications found in \cite{Intel}, \cite{AMD}. 
+We use 40 OpenVX applications in \cite{Intel}, \cite{AMD} captured in annotated dataflow. 
 The number of processing kernels in applications ranges from 3 to 14, and the number of edges/links varies is from 2 to 17. 
 The applications are composed of 35 types of unique processing kernels.
 Each kernel can be instantiated at most once in HW, and multiple instances are scheduled sequentially.
@@ -17,35 +18,39 @@ Each kernel can be instantiated at most once in HW, and multiple instances are s
 	\centering
 		\subfloat[UPA and DSS] {\includegraphics[width=.28\linewidth]{fig/DSSMAAR.pdf}\label{fig:mapMAAR}}
 		\hfill
-		\subfloat[FDP] {\includegraphics[width=.32\linewidth]{fig/FOP.pdf}\label{fig:mapFOP}}
-		\hfill
 		\subfloat[ODP] {\includegraphics[width=.32\linewidth]{fig/OOP.pdf}\label{fig:mapOOP}}
+		\hfill
+		\subfloat[FDP] {\includegraphics[width=.32\linewidth]{fig/FOP.pdf}\label{fig:mapFOP}}
 	\vspace{-8pt}
 	\caption{Experiments Settings}
 	\label{fig:avg}
 \end{figure}
 
+
+To understand the benefits of UPA Evaluation, this section compares UPA with DSS~\cite{zhang2018ds} and Foreign Dedicated Platform (FDP).
+DSS is a greedy algorithm for platform allocation according to characteristics analysis across applications without an evaluation. 
+As \figref{fig:mapMAAR} shown, both UPA and DSS platform is designed for many applications.
 \newtext{
-To understand the benefits of UPA Evaluation, this section compares UPA with DSS~\cite{zhang2018ds} and Foreign Dedicated Platform (FDP). As \figref{fig:mapMAAR} shown, both UPA and DSS platform is designed for many applications. DSS is a greedy algorithm for platform allocation according to characteristics analysis across applications without an evaluation. While in \figref{fig:mapFOP}, FDP considers one application in isolation instead of many applications. In the experiments, an exhaustive search is used to find the dedicated platform, which gives the optimal platform for one application. Then mapping all applications on this platform provides one Foreign Dedicated Platform (FDP) performance. To get the average performance of FDP, this paper maps all applications onto all optimal platforms (one platform from one application). Similar to ODP, FDP results in the same number of platforms. However, ODP in \figref{fig:mapOOP} only maps the application on its Own Dedicated Platform (ODP), while FDP maps all applications onto each platform.
+While in \figref{fig:mapOOP}, Own Dedicated Platform (ODP) considers one application in isolation instead of many applications. In the experiments, an exhaustive search is used to find a dedicated platform, which gives the optimal platform for one application. 
+\figref{fig:mapFOP} illustrates Foreign Dedicated Platform (FDP). FDP maps all applications on one dedicated platform providing one Foreign Dedicated Platform (FDP) performance. To get the average performance of FDP, this paper maps all applications onto all optimal platforms (one platform from one application). Similar to ODP, FDP results in the same number of platforms. However, ODP only maps the application on its Own Dedicated Platform (ODP), while FDP maps all applications onto each platform.
 }
 
-\newtext{
-\begingroup
-\setlength{\columnsep}{8pt}%
-\begin{wrapfigure}{l}{0.5\linewidth}
-	\vspace{-4pt}
-	\begin{center}
-		\includegraphics[width=\linewidth]{fig/oopHW.pdf}
-	\end{center}
-	\vspace{-8pt}
-	\caption{Unique ACCs Used in Platform(s)}
-	\label{fig:oopHW}
-	\vspace{-4pt}
-\end{wrapfigure}
+
+%\begingroup
+%\setlength{\columnsep}{8pt}%
+%\begin{wrapfigure}{l}{0.5\linewidth}
+%	\vspace{-4pt}
+%	\begin{center}
+%		\includegraphics[width=\linewidth]{fig/oopHW.pdf}
+%	\end{center}
+%	\vspace{-8pt}
+%	\caption{Unique ACCs Used in Platform(s)}
+%	\label{fig:oopHW}
+%	\vspace{-4pt}
+%\end{wrapfigure}
 
 
-\figref{fig:oopHW} lists the number of unique ACCs in platform(s) for each allocation
-(SW is empty; DSS, UPA and FDP are equal to the budget). ODP has one platform per application, so there are 40 platforms for all applications. Each dedicated platform has a number of ACCs equal to the budget, so there are a large number of unique ACCs for all dedicated platforms. When each dedicated platform has 1 ACC, there are 14 unique ACCs, indicating some reuse. However, if each dedicated platform has 2 ACCs, there are 25 unique ACCs (11 more) showing the limits of reuse. 
+%\figref{fig:oopHW} lists the number of unique ACCs in platform(s) for each allocation
+%(SW is empty; DSS, UPA and FDP are equal to the budget). ODP has one platform per application, so there are 40 platforms for all applications. Each dedicated platform has a number of ACCs equal to the budget, so there are a large number of unique ACCs for all dedicated platforms. When each dedicated platform has 1 ACC, there are 14 unique ACCs, indicating some reuse. However, if each dedicated platform has 2 ACCs, there are 25 unique ACCs (11 more) showing the limits of reuse. 
 
-\endgroup
-}
+%\endgroup

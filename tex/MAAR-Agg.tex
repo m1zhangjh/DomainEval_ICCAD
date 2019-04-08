@@ -2,9 +2,9 @@
 \subsection{Fair Aggregation across Many Apps}
 \label{subsec:aggregation}
 
-UPA needs to aggregate the normalized application efficiencies to a single fitness value to judge platforms quantitatively. This section proposes multiple aggregation options with mathematics analyses.
+In order to quantitatively reason about platforms, the normalized application efficiencies need to be aggregated into a single fitness value. This section proposes and compares aggregation options.
 
-Illustrating the aggregation challenge, \figref{fig:eff} shows relative efficiencies of application on an example Unified Platform (UP, blue) normalized by the lower bound SW platform (orange) in \figref{fig:effSW} and by the upper bound ODP (grey) in \figref{fig:effOOP}. In \figref{fig:effSW}, the relative efficiency of SW is always equal to 1, because it is normalized by itself. The ODP has higher $rEFF_{SW}$ than the UP for each application because ODP is the optimal platform design for each application. \figref{fig:effOOP} shows relative efficiency compared with ODP $rEFF_{ODP}$ for SW, UP and ODP. Similarly, ODP always has a $rEFF_{ODP}$ of 1 because it is normalized by itself. UP has $rEFF_{ODP}$ between SW and ODP, because UP accelerates some kernels to achieve better performance than SW, and is not the application own optimal platform, so it performs worse than the ODP.
+Illustrating the aggregation challenge, \figref{fig:eff} shows normalized efficiencies of application on an example Unified Platform (UP, blue) normalized by the lower bound SW platform (orange) in \figref{fig:effSW} and by the upper bound ODP (grey) in \figref{fig:effOOP}. In \figref{fig:effSW}, the relative efficiency of SW is always equal to 1, because it is normalized by itself. The ODP has higher $rEFF_{SW}$ than the UP for each application because ODP is the optimal platform design for each application. \figref{fig:effOOP} shows relative efficiency compared with ODP $rEFF_{ODP}$ for SW, UP and ODP. Similarly, ODP always has a $rEFF_{ODP}$ of 1 because it is normalized by itself. UP has $rEFF_{ODP}$ between SW and ODP, because UP accelerates some kernels to achieve better performance than SW, and is not the application own optimal platform, so it performs worse than the ODP.
 
 \input{tex/MAAR-Agg-avg.tex}
 \input{tex/MAAR-Agg-med.tex}
